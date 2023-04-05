@@ -3,13 +3,19 @@ import { StatusBar } from "expo-status-bar";
 import { useRef, useState } from "react";
 import {
   Button,
+  Image,
+  KeyboardAvoidingView,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Switch,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
+import MyForm from "./components/MyForm";
+import MyTouchable from "./components/MyTouchable";
 
 const PICKER_VALUES = [
   { value: "orange", label: " Orange Laranja" },
@@ -18,62 +24,52 @@ const PICKER_VALUES = [
 ];
 
 export default function App() {
-  const [sw, setSw] = useState(false);
-  const [txt, setTxt] = useState("");
+  const handlePress = () => {
+    console.log("Pressed!");
+  };
 
-  // const pkRef = useRef<Picker<string> | null>(null);
-
-  const [pkVal, setPkVal] = useState("apple");
-
-  console.log(txt);
+  const handleLogin = (
+    username: string,
+    password: string,
+    remember: boolean
+  ) => {
+    console.log("Login for: ", username, password, remember);
+  };
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <KeyboardAvoidingView>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.header}>Header!</Text>
 
-      <TextInput secureTextEntry={true} value={txt} onChangeText={setTxt} />
+          <Button onPress={handlePress} title="Press Me!" />
 
-      <Switch value={sw} onValueChange={setSw} />
+          <MyTouchable />
 
-      <Picker
-        // ref={pkRef}
-        selectedValue={pkVal}
-        onValueChange={(itemValue, itemIndex) => {
-          setPkVal(itemValue);
-          console.log(itemIndex);
-        }}
-      >
-        {PICKER_VALUES.map((p) => (
-          <Picker.Item value={p.value} label={p.label} key={p.value} />
-        ))}
-
-        {/* <Picker.Item value="orange" label="Orange" />
-        <Picker.Item value="apple" label="Apple" />
-        <Picker.Item value="strawberry" label="Strawberry" /> */}
-      </Picker>
-
-      {/* <Button
-        onPress={() => {
-          pkRef.current?.focus();
-        }}
-        title="Open Picker"
-      /> */}
-
-      <Text>
-        {sw ? "sim" : "não"} {txt} {pkVal}
-      </Text>
-    </View>
+          <MyForm title="My Login Form" onSubmit={handleLogin} />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor: "black",
-    paddingTop: 16,
+    paddingTop: 24,
+    backgroundColor: "grey",
+  },
+  header: {
+    fontWeight: "bold",
+  },
+  touchable: {
+    backgroundColor: "dimgrey",
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  touchableText: {
+    color: "white",
   },
 });
