@@ -6,6 +6,7 @@ import {
   Button,
   Switch,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -25,6 +26,9 @@ export default function MyForm({ onSubmit, title }: MyFormProps) {
     <View style={styles.container}>
       <Text style={styles.header}>{title}</Text>
 
+      {username.length === 0 && (
+        <Text style={styles.error}>Username is mandatory!</Text>
+      )}
       <TextInput
         placeholder="Your username here..."
         style={styles.input}
@@ -46,8 +50,20 @@ export default function MyForm({ onSubmit, title }: MyFormProps) {
       </View>
 
       <Button
-        disabled={canSubmit}
-        onPress={() => onSubmit(username, password, remember)}
+        // disabled={canSubmit}
+        onPress={() => {
+          if (username.length === 0) {
+            Alert.alert("Error", "Username is not filled!");
+            return;
+          }
+
+          if (password.length === 0) {
+            Alert.alert("Error", "Password is not filled!");
+            return;
+          }
+
+          onSubmit(username, password, remember);
+        }}
         title="Login"
       />
     </View>
@@ -76,5 +92,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  error: {
+    color: "red",
+    marginTop: 8,
   },
 });
