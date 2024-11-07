@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-picker/picker": "2.4.8",
     "expo": "^48.0.0",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
@@ -23,5 +22,6 @@
     "@types/react-native": "~0.69.1",
     "typescript": "^4.9.4"
   },
-  "private": true
+  "private": true,
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
