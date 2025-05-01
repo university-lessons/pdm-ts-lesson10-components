@@ -1,44 +1,33 @@
 import Constants from "expo-constants";
-import { useState } from "react";
 import {
+  Button,
   Dimensions,
-  KeyboardAvoidingView,
-  ScrollView,
+  Image,
   StyleSheet,
+  Switch,
+  Text,
+  TextInput,
   View,
 } from "react-native";
+import SignUpForm from "./components/SignUpForm";
+import Logo from "./components/Logo";
 import FormInput from "./components/FormInput";
 
 export default function App() {
-  const [text, setText] = useState("");
-  const [password, setPassword] = useState("");
-
-  console.log(text);
-
   return (
-    <KeyboardAvoidingView>
-      <ScrollView>
-        <View style={styles.container}>
-          <FormInput value={text} onChangeText={setText} />
+    <View style={styles.container}>
+      <Logo width={200} height={70} />
 
-          <FormInput value={text} onChangeText={setText} label="Username" />
-
-          <FormInput
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            error="Password mismatch!"
-          />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      <SignUpForm />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    paddingTop: Constants.statusBarHeight,
-    height: Dimensions.get("screen").height,
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
