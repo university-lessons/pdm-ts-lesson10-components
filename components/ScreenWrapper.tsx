@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#333",
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 16,
   },
 });
