@@ -1,33 +1,31 @@
-import Constants from "expo-constants";
-import {
-  Button,
-  Dimensions,
-  Image,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import SignUpForm from "./components/SignUpForm";
-import Logo from "./components/Logo";
+import { useState } from "react";
 import FormInput from "./components/FormInput";
+import ScreenWrapper from "./components/ScreenWrapper";
+import Title from "./components/Title";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Logo width={200} height={70} />
+  const [email, setEmail] = useState("");
 
-      <SignUpForm />
-    </View>
+  return (
+    <ScreenWrapper>
+      <Title>Hello World!</Title>
+
+      <Title c="red" fw="bold">
+        Hello {email}
+      </Title>
+
+      <Title c="yellow" fz={20} fw="bold">
+        Hello World!
+        <Title c="lime" fz={20} fw="bold">
+          Ow Yes!
+        </Title>
+      </Title>
+
+      <FormInput label="Email" value={email} onChangeText={setEmail} />
+
+      <FormInput label="Password" secureTextEntry error="Password mismatch!" />
+
+      <FormInput placeholder="This is a placeholder" />
+    </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
